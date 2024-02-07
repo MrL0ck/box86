@@ -518,7 +518,8 @@ void LoadLogEnv()
     if(p) {
         box86_dynarec_delay = strtoll(p, NULL, 10);
         printf_log(LOG_INFO, "No Dynablock creation before %llu instructions\n", box86_dynarec_delay);
-
+    }
+    
     p = getenv("BOX86_DYNAREC_TEST");
     if(p) {
         if(strlen(p)==1) {
