@@ -80,6 +80,7 @@ uintptr_t box86_nodynarec_start = 0;
 uintptr_t box86_nodynarec_end = 0;
 int box86_dynarec_test = 0;
 int box86_dynarec_missing = 0;
+int box86_dynarec_delay = 0;
 #ifdef ARM
 int arm_vfp = 0;     // vfp version (3 or 4), with 32 registers is mendatory
 int arm_swap = 0;
@@ -513,6 +514,11 @@ void LoadLogEnv()
             printf_log(LOG_INFO, "No Dynablock creation that start in %p - %p range\n", (void*)box86_nodynarec_start, (void*)box86_nodynarec_end);
         }
     }
+    p = getenv("BOX86_DYNAREC_DELAY");
+    if(p) {
+        box86_dynarec_delay = strtoll(p, NULL, 10);
+        printf_log(LOG_INFO, "No Dynablock creation before %llu instructions\n", box86_dynarec_delay);
+
     p = getenv("BOX86_DYNAREC_TEST");
     if(p) {
         if(strlen(p)==1) {

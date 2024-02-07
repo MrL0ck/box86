@@ -264,7 +264,7 @@ uintptr_t arm_pass(dynarec_arm_t* dyn, uintptr_t addr)
         ++ninst;
         #if STEP == 0
         if(ok && (((box86_dynarec_bigblock<stopblock) && !isJumpTableDefault((void*)addr)) 
-            || (addr>=box86_nodynarec_start && addr<box86_nodynarec_end)))
+            || (addr>=box86_nodynarec_start && addr<box86_nodynarec_end) || (box86_dynarec_delay > 0)))
         #else
         if(ok && (ninst==dyn->size))
         #endif

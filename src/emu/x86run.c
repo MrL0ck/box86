@@ -81,6 +81,9 @@ x86emurun:
     while(1) 
 #endif
     {
+        if (box86_dynarec_delay > 0) {
+            --box86_dynarec_delay;
+        }
 #if defined(HAVE_TRACE)
         __builtin_prefetch((void*)addr, 0, 0); 
         emu->prev2_ip = emu->old_ip;
