@@ -440,7 +440,7 @@ void* FillBlock(dynablock_t* block, uintptr_t addr) {
 dynarec_log(LOG_DEBUG, "Asked to Fill block %p with %p\n", block, (void*)addr);
     if (box86_dynarec_delay > 0) {
         dynarec_log(LOG_DEBUG, "Asked to fill a block too soon\n");
-        return NULL;
+        return CreateEmptyBlock(block, addr);
     }
     if ((addr>=box86_nodynarec_start && addr<box86_nodynarec_end)) {
         dynarec_log(LOG_DEBUG, "Asked to fill a block in fobidden zone\n");
