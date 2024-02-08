@@ -81,12 +81,14 @@ x86emurun:
     while(1) 
 #endif
     {
+#ifdef DYNAREC
         if (box86_dynarec_delay > 0) {
             --box86_dynarec_delay;
             if (box86_dynarec_delay == 0) {
                 dynarec_log(LOG_INFO, "Dynarec delay expired\n");
             }
         }
+#endif
 #if defined(HAVE_TRACE)
         __builtin_prefetch((void*)addr, 0, 0); 
         emu->prev2_ip = emu->old_ip;
